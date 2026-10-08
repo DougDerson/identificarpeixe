@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#087f5b">
+  <title>Identificador de Peixes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <span class="tag">🐟 IA • PROTÓTIPO</span>
+      <h1>Identificador de Peixes</h1>
+      <p>Fotografe um peixe e encontre a espécie no seu banco.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card camera-card">
+      <div class="card-title">
+        <div>
+          <h2>📷 Identificar peixe</h2>
+          <p>Use a câmera ou escolha uma foto.</p>
+        </div>
+        <span class="status" id="status">Pronto</span>
+      </div>
+
+      <div class="preview" id="preview">
+        <div class="placeholder" id="placeholder">
+          <div class="fish-icon">🐟</div>
+          <strong>Nenhuma imagem selecionada</strong>
+          <span>Coloque o peixe no centro da foto.</span>
+        </div>
+        <img id="previewImage" alt="Foto do peixe">
+      </div>
+
+      <div class="buttons">
+        <label class="btn primary">
+          📷 Abrir câmera
+          <input id="cameraInput" type="file" accept="image/*" capture="environment" hidden>
+        </label>
+        <label class="btn secondary">
+          🖼️ Galeria
+          <input id="galleryInput" type="file" accept="image/*" hidden>
+        </label>
+      </div>
+
+      <button class="btn identify" id="identifyBtn" disabled>🔎 Identificar peixe</button>
+    </section>
+
+    <section class="card result-card" id="resultCard">
+      <div class="card-title">
+        <div>
+          <h2>🎯 Resultado</h2>
+          <p id="resultSubtitle">O resultado aparecerá aqui.</p>
+        </div>
+      </div>
+
+      <div id="resultEmpty" class="empty-result">
+        <span>🤖</span>
+        <p>Selecione uma imagem para começar.</p>
+      </div>
+
+      <div id="resultContent" class="result-content">
+        <img id="resultImage" alt="Peixe identificado">
+        <div class="result-info">
+          <span class="label">Espécie encontrada</span>
+          <h3 id="resultName">—</h3>
+          <p class="scientific" id="resultScientific">—</p>
+          <div class="confidence">
+            <div class="confidence-head">
+              <span>Confiança do protótipo</span>
+              <strong id="confidenceValue">0%</strong>
+            </div>
+            <div class="bar"><div id="confidenceBar"></div></div>
+          </div>
+          <p id="resultDescription"></p>
+          <div class="facts" id="resultFacts"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">
+        <div>
+          <h2>🐠 Banco de peixes</h2>
+          <p>Cadastre espécies e imagens para preparar o futuro treinamento da IA.</p>
+        </div>
+        <button class="small-btn" id="addFishBtn">＋ Adicionar</button>
+      </div>
+      <div class="fish-grid" id="fishGrid"></div>
+    </section>
+
+    <section class="card technical">
+      <h2>⚙️ Próxima etapa: IA real</h2>
+      <p>
+        Esta primeira versão já possui câmera, galeria, cadastro e banco local.
+        A identificação atual é um <strong>modo de demonstração</strong>.
+        Na próxima etapa, o JavaScript pode ser conectado a um modelo
+        TensorFlow.js/Teachable Machine treinado com suas fotos.
+      </p>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="fishModal">
+    <div class="modal-box">
+      <button class="close" id="closeModal">×</button>
+      <h2>Adicionar espécie</h2>
+      <p class="modal-help">Cadastre a espécie e uma foto de referência.</p>
+
+      <label>Nome popular
+        <input id="fishName" placeholder="Ex.: Tilápia">
+      </label>
+      <label>Nome científico
+        <input id="fishScientific" placeholder="Ex.: Oreochromis niloticus">
+      </label>
+      <label>Descrição
+        <textarea id="fishDescription" placeholder="Características da espécie..."></textarea>
+      </label>
+      <label>Foto
+        <input id="fishPhoto" type="file" accept="image/*">
+      </label>
+
+      <button class="btn identify" id="saveFishBtn">💾 Salvar espécie</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
